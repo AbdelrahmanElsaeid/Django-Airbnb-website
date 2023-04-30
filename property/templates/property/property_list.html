@@ -141,7 +141,7 @@
                                             <span class="price per-price">${{property.price}}<br><small>/night</small></span>
                                         </div>
                                     </div>
-                                    <p>{{property.description}}</p>
+                                    <p>{{property.description|safe|truncatewords:3}}</p>
                                     <hr>
                                     <p class="bottom-area d-flex">
                                         <span><i class="icon-map-o"></i> {{property.place}}</span>

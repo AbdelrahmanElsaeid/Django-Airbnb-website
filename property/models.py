@@ -76,8 +76,8 @@ class PropertyBook(models.Model):
     property = models.ForeignKey(Property, related_name='book_property', on_delete=models.CASCADE)
     date_from = models.DateField(default=timezone.now)
     date_to = models.DateField(default=timezone.now)
-    guest = models.CharField(max_length=2, choices=COUNT)
-    childern = models.CharField(max_length=2, choices=COUNT)
+    guest = models.IntegerField(max_length=2, choices=COUNT)
+    childern = models.IntegerField(max_length=2, choices=COUNT)
 
 
     def __str__(self):
