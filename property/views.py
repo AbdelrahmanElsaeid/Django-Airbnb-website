@@ -3,13 +3,17 @@ from django.views.generic import ListView, DetailView
 from .models import Property
 from django.views.generic.edit import FormMixin
 from .forms import PropertyBookForm
+from django_filters.views import FilterView
+from .filters import PropertyFilter
 # Create your views here.
 
 
 
-class PropertyList(ListView):
+class PropertyList(FilterView):
     model = Property
     paginate_by = 1
+    filterset_class = PropertyFilter
+    template_name = 'property/property_list.html'
 
 
 
