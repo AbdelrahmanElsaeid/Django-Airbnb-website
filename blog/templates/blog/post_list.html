@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+
+
+
+<div class="hero-wrap js-fullheight" style="background-image: url({% static 'images/bg_4.jpg'  %});">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center"
+            data-scrollax-parent="true">
+            <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+                <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span
+                        class="mr-2"><a href="index.html">Home</a></span> <span>Blog</span></p>
+                <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Tips &amp;
+                    Articles</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row d-flex">
+            {% for post in object_list  %}
+                <div class="col-md-3 d-flex ftco-animate">
+                    <div class="blog-entry align-self-stretch">
+                        <a href="{% url 'blog:post_detail' post.slug %}" class="block-20" style="background-image: url( {{post.image.url}});">
+                        </a>
+                        <div class="text p-4 d-block">
+                            <span class="tag">{{post.tags}}</span>
+                            <h3 class="heading mt-3"><a href="{% url 'blog:post_detail' post.slug %}">{{post.title}}</a>
+                            </h3>
+                            <div class="meta mb-3">
+                                <div><a href="#">{{post.create_at|date:'F j Y'}}</a></div>
+                                <
+                                <div><a href="{{post.get_absolute_url}}">{{post.author}}</a></div>
+                                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+           
+           
+        </div>
+        {% if is_paginated %}
+        <div class="row mt-5">
+            <div class="col text-center">
+                <div class="block-27">
+                    <ul>
+                        {% if page_obj.has_previous %}
+                            <li><a href="?page={{page_obj.previous_page_number}}">&lt;</a></li>
+                        {% else %}
+                            <li class= 'disabled' ><span>&lt;</span></li>
+                        {% endif %}
+
+
+                        {% for i in paginator.page_range %}
+                            {% if page_obj.number == i %}
+                                <li class="active"><span>{{i}}</span></li>
+                            {% else %}
+                                <li><a href="?page={{i}}">{{i}}</a></li>
+                            {% endif %}
+                        
+                        {% endfor %}
+
+                        {% if page_obj.has_next  %}
+                            <li><a href="?page={{page_obj.next_page_number}}">&gt;</a></li>
+                        {% else %}
+                            <li class= 'disabled' ><span>&lt;</span></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock body %}
