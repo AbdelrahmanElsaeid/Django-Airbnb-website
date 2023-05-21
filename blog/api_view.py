@@ -10,7 +10,7 @@ from django.db.models.query_utils import Q
 @api_view(['GET'])
 def post_list_api(request):
     all_posts = Post.objects.all()
-    data = PostSerializer(all_posts, many=True).data
+    data = PostSerializer(all_posts, many=True, context = {'request':request}).data
     return Response({'data':data})
 
 

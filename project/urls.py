@@ -28,7 +28,9 @@ urlpatterns = [
     path('about', include('about.urls' ,namespace='about')),   
     path('', include('settings.urls' ,namespace='home')),
     path('summernote/', include('django_summernote.urls')),
-    path('api-auth/', include('rest_framework.urls'))
+    path('api-auth/', include('rest_framework.urls')),
+    path('rest-auth/', include('dj_rest_auth.urls')),
+    path('rest-auth/registration/', include('dj_rest_auth.registration.urls'))
 ]
 
 
