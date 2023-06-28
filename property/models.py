@@ -24,6 +24,33 @@ class Property(models.Model):
         super(Property,self).save(*args, **kwargs) 
 
 
+    def check_availability(self):
+        all_reservations = self.book_property.all()
+        now = timezone.now().date()
+
+        for reservation in all_reservations:
+            if now > reservation.date_to:
+                return "Available"
+            elif now < reservation.date_to and now > reservation.date_from:
+                re = reservation.date_to
+                return f"In Progress {re}"
+
+            else:
+                return "Available"
+
+
+
+
+    def get_avg_rating(self):
+        all_reviews = self.review_property.all()
+        all_rating = 0
+        for review in all_reviews:
+            if len(all_reviews)>0:
+                all_rating+=review.rate
+                return round(all_rating/len(all_reviews),2)    
+            else:
+                return '-'
+
     def get_absolute_url(self):
         return reverse('property:property_detail', kwargs={"slug": self.slug})
            
@@ -83,3 +110,8 @@ class PropertyBook(models.Model):
 
     def __str__(self):
         return str(self.property)
+    
+    def in_progress(self):
+        now = timezone.now().date()
+        return now > self.date_from and now < self.date_to
+    in_progress.boolean = True

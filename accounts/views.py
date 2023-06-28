@@ -64,5 +64,5 @@ def profile_edit(request):
 
 
 def my_reservation(request):
-    user_reservation = PropertyBook.objects.filter(name=request.user)
+    user_reservation = PropertyBook.objects.filter(author=request.user)
     return render(request,'profile/my_reservation.html' , {'user_reservation':user_reservation})

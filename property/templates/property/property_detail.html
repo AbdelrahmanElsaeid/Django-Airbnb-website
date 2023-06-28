@@ -53,6 +53,12 @@
 
                     </div>
 
+                    {% if object.check_availability == "Available" %}
+                        <h4>Available Today</h4>
+                    {% else %}
+                        <h4>The Room Is Being Booked The Reservation {{object.check_availability}}</h4>    
+                    {% endif %}
+
                     <div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
                         <h4 class="mb-5">Check Availability &amp; Booking</h4>
                         <form  method="post" class="form">
