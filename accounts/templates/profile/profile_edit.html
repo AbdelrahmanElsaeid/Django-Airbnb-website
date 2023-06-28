@@ -17,10 +17,17 @@
 </div>
 <div class="row">
     <div class="col-md-4 mx-auto mt-5 mb-5">
-      <p>Password Changes Successfully</p>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form user_form %}
+            {% bootstrap_form profile_form %}
+            {% buttons %}
+                <button type="submit" class="btn btn-primary py-3">Edit Profile</button>
+            {% endbuttons %}
+        
+        </form>
     </div>
-
 </div>
 
 
-{% endblock %}
+ {% endblock %}

@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% load bootstrap4 %}
 {% block body %}
 <div class="hero-wrap js-fullheight" style="background-image: url({% static 'images/bg_5.jpg' %});">
 	<div class="overlay"></div>
@@ -16,11 +15,24 @@
 	</div>
 </div>
 <div class="row">
-    <div class="col-md-4 mx-auto mt-5 mb-5">
-      <p>Password Changes Successfully</p>
-    </div>
+    <div class="col-md-6 mx-auto mt-5 mb-5">
+        {{profile.user.username}}
 
+        {{profile.user.email}}
+        
+        
+        {{profile.phone_number}}
+        
+        {{profile.address}}
+        
+        
+        
+		<h5><a href="{% url 'accounts:profile_edit' %}">Edit Profile</a></h5>
+        <h5><a href="{% url 'password_change' %}">Change Password</a></h5>
+        <h5><a href="{% url 'accounts:my_reservation' %}">My Reservation</a></h5>
+    </div>
 </div>
+
 
 
 {% endblock %}
