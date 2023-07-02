@@ -8,6 +8,8 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.conf import settings
 from .tasks import send_email_tasks
+from blog.models import Post
+from property.models import PropertyBook
 
 # Create your views here.
 
@@ -80,3 +82,23 @@ def contact_us(request):
         # )
 
     return render(request,'settings/contact.html',{'site_info': site_info})
+
+
+def dashboard(request):
+    user_count = User.objects.all().count()
+    hotel_count = Property.objects.filter(Category__name = 'Hotels').count()
+    places_count = Property.objects.filter(Category__name = 'Places').count()
+    resturant_count = Property.objects.filter(Category__name = 'Resturant').count()
+    booking_count = PropertyBook.objects.all().count()
+    posts_count = Post.objects.all().count()
+    return render(request, 'settings/dashboard.html',{
+ 
+        'user_count':user_count,
+        'hotel_count':hotel_count,
+        'places_count':places_count,
+        'resturant_count':resturant_count,
+        'booking_count':booking_count,
+        'posts_count':posts_count
+
+
+                    })
