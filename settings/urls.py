@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import Home ,home_search, category_filter, contact_us, dashboard
+from .views import Home ,home_search, category_filter, contact_us, dashboard, news_letter
 
 app_name = 'settings'
 
@@ -9,6 +9,7 @@ urlpatterns = [
     path('contact-us' , contact_us,name='contact_us'),
     path('category/<slug:category>' ,category_filter ,name='category_filter'),
     path('dashboard/', dashboard, name= 'dashboard'),
+    path('newsletter/', news_letter, name= 'newsletter'),
 
 
 ]    

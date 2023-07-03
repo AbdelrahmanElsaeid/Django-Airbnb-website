@@ -1,5 +1,6 @@
+from django.http import JsonResponse
 from django.shortcuts import render
-from .models import Settings
+from .models import Settings, NewsLatter
 from property.models import Property,Place,Category
 from django.db.models.query_utils import Q
 from django.db.models import Count
@@ -102,3 +103,13 @@ def dashboard(request):
 
 
                     })
+
+
+
+
+
+def news_letter(request):
+    email = request.POST.get("emailInput")
+    news_letter = NewsLatter.objects.create(email=email)
+
+    return JsonResponse({'done':'done'})
