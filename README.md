@@ -1,10 +1,10 @@
 # Django-Airbnb-Platform Website
 ### site compnents :
-    - Users
-    - Property
-    - Blog
-    - chart
-    - dashboard
+  - Users
+  - Property
+  - Blog
+  - chart
+  - dashboard
 
 ### teck Stack :
 
