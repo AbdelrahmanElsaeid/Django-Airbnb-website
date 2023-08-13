@@ -3,17 +3,19 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
+from django.utils.translation import gettext as _
+
 
 
 # Create your models here.
 class Property(models.Model):
-    name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='property')
-    price = models.IntegerField(default=0)
-    description = models.TextField(max_length=10000)
-    place = models.ForeignKey('Place', related_name='property_place' ,on_delete=models.CASCADE)
-    Category = models.ForeignKey('Category', related_name='property_category' ,on_delete=models.CASCADE)
-    slug = models.SlugField(null=True,blank=True)
+    name = models.CharField(_('name'), max_length=100)
+    image = models.ImageField(_('image'),upload_to='property')
+    price = models.IntegerField(_('price'),default=0)
+    description = models.TextField(_('description'),max_length=10000)
+    place = models.ForeignKey('Place', related_name='property_place' ,on_delete=models.CASCADE, verbose_name=_('place'))
+    Category = models.ForeignKey('Category', related_name='property_category' ,on_delete=models.CASCADE, verbose_name=_('category'))
+    slug = models.SlugField(_('slug'),null=True,blank=True)
 
     def __str__(self):
         return self.name
