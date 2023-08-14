@@ -17,7 +17,6 @@
   - Heroku
   - Docker
   - Redis
-  - Testing
   - chart.js
   - Ajax
   - django rest-auth
